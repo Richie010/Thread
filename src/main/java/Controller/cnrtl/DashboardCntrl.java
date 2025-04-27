@@ -39,7 +39,6 @@ public class DashboardCntrl {
 
         String ipAddress = request.getHeader("X-Forwarded-For");
         if (ipAddress == null || ipAddress.isEmpty()) {
-            // If not available, fall back to the remote address
             ipAddress = request.getRemoteAddr();
         }
         if (session.getAttribute("startTime") == null) {
@@ -48,7 +47,7 @@ public class DashboardCntrl {
 
         LocalDateTime startTime = (LocalDateTime) session.getAttribute("startTime");
         SessionDto sessionDto = new SessionDto(ipAddress, startTime);
-        ModelAndView mav = new ModelAndView("sessionInfo"); // JSP name without .jsp
+        ModelAndView mav = new ModelAndView("sessionInfo");
         mav.addObject("ipAddress", ipAddress);
         mav.addObject("startTime", startTime);
 
@@ -64,7 +63,7 @@ public class DashboardCntrl {
         System.out.println("Size"+accountList.size());
 
         session.setAttribute("accountLoadedTime", LocalDateTime.now());
-        ModelAndView mav = new ModelAndView("accountDetails"); // Maps to accountDetails.jsp
+        ModelAndView mav = new ModelAndView("accountDetails");
         mav.addObject("accounts", accountList);
 
         return mav;
