@@ -3,11 +3,12 @@ package Controller.dto;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDateTime;
 
 @Service
-@Scope(value = "session",proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionDto {
     private String ipAddress;
     private LocalDateTime sessionStartTime;

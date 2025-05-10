@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Console Appender for logging in the console -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{ISO8601} [%t] %-5p %c{1}:%L - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <!-- File Appender for logging to a file -->
+        <File name="File" fileName="logs/app-log.log">
+            <PatternLayout>
+                <Pattern>%d{ISO8601} [%t] %-5p %c{1}:%L - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root Logger -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+
+        <!-- Logger for your Spring MVC Controller -->
+        <Logger name="com.yourcompany.controller" level="debug">
+            <AppenderRef ref="File"/>
+        </Logger>
+    </Loggers>
+</Configuration>
