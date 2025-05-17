@@ -37,12 +37,7 @@ public class DashboardCntrl {
     private DashBoardServiceImpl dashBoardSvc;
 
 
-    @RequestMapping("/")
-    public ModelAndView getPage(){
-        ModelAndView m = new ModelAndView();
-        m.setViewName("welcome");
-        return m;
-    }
+
 
     @RequestMapping(value = "/getSessionInfo", method = RequestMethod.GET)
     public ModelAndView getSessionInfo(HttpServletRequest request) {
@@ -150,8 +145,8 @@ public class DashboardCntrl {
             File tempDir = Files.createTempDirectory("chequeExport").toFile();
 
             while (true) {
-           //     List<AccountDto> accountDTOList = dashBoardSvc.getChequeDetailsOnAccountnumber(accNO, offset);
-                 List<AccountDto> accountDTOList = dashBoardSvc.getChequeDetailsOnAccount(accNO);
+               List<AccountDto> accountDTOList = dashBoardSvc.getChequeDetailsOnAccountnumber(accNO, offset);
+//                 List<AccountDto> accountDTOList = dashBoardSvc.getChequeDetailsOnAccount(accNO);
 
                 if (accountDTOList == null || accountDTOList.isEmpty()) {
                     break;
@@ -167,7 +162,7 @@ public class DashboardCntrl {
 
                 try (FileOutputStream fos = new FileOutputStream(tempFile)) {
                     wb.write(fos);
-                    wb.dispose(); // Clean up temporary files
+                    wb.dispose();
                     tempExcelFiles.add(tempFile);
                 }
 
